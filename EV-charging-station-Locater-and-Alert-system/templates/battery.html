@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery_status</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+
+{% block body %}
+
+
+<body onload="start()" >
+    <h1>Welcome to the Dashboard</h1>
+    <div class="bat">
+        <div id="result" class="persent"></div>
+    </div>
+    <a href="/map" id="next">map</a>
+    <script>
+        document.getElementById("result").innerHTML;
+    </script>
+<script type="text/javascript">
+var c = 0;
+var interval = setInterval(update_val, 2000);
+function update_val(){
+    $.getJSON('/stuff',
+    function(data){
+        c=c+5;
+        console.log(c);
+        $('#result').text(data.result);
+        //$('#result').css("width", data.result);
+        $('#result').css("width", c);
+        console.log(data.result);
+
+    });
+};  
+    function slick(){
+        navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+	    enableHighAccuracy: true})
+    }
+    function successLocation(position){
+        const url = "/map?latitude="+position.coords.latitude+"&longitude="+ position.coords.longitude;
+        document.getElementById('next').setAttribute('href', url);
+    }
+    function errorLocation(){}
+    function start(){
+        slick();
+        update_val();
+    }
+</script>
+</body>
+{% endblock %}
+</html>

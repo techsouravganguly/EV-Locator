@@ -1,0 +1,21 @@
+.bat{
+    height: 20vh;
+    width: 30%;
+    border: 5px solid black;
+    background-color: rgb(192, 192, 192);
+    border-radius: 15px;
+    overflow:auto
+}
+.persent{    
+    background-color: rgb(116, 194, 92);
+    color: white;
+    padding: 1%;
+    text-align: right;
+    font-size: 20px;
+    border-radius: 15px;
+        
+}
+
+.locate6{
+    cursor: pointer;
+}
